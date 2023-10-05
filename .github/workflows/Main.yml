@@ -10,7 +10,8 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
+      - uses: actions/checkout@v3
       - uses: akiojin/ue-build-github-action@v0.2.8
         with:
           version: UE_5.3
-          build-target: Win64
+          configuration: Shipping
