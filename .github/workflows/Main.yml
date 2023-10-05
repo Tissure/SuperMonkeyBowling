@@ -1,0 +1,16 @@
+name: Main
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: akiojin/ue-build-github-action@v0.2.8
+        with:
+          version: UE_5.3
+          build-target: Win64
