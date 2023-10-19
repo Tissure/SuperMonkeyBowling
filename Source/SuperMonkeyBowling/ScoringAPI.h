@@ -14,5 +14,5 @@ class SUPERMONKEYBOWLING_API UScoringAPI : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 	UFUNCTION(BlueprintCallable, Category="Scoring")
-	static int CalculateScore(float time, int bowling);
+	static int CalculateScore(float timeTaken, float timeMin, int pinsKnocked);
 };

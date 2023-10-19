@@ -3,13 +3,8 @@
 
 #include "ScoringAPI.h"
 
-int UScoringAPI::CalculateScore(float time, int bowling)
-{
-	// get time
-	// get max time
-	// diff = time - max
-	// score = basescore - diff scaled
-	// get bowling
-	// final = score * bowling
-	return 100;
+int UScoringAPI::CalculateScore(float timeTaken, float timeMin, int pinsKnocked) {
+    float diff = timeMin - timeTaken;
+    float score = diff * pinsKnocked; //scaled
+    return score;
 }
