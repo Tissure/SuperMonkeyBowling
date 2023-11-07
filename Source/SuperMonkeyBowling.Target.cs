@@ -10,8 +10,6 @@ public class SuperMonkeyBowlingTarget : TargetRules
 		Type = TargetType.Game;
 		DefaultBuildSettings = BuildSettingsVersion.V4;
 
-        //StaticAnalyzer = StaticAnalyzer.PVSStudio;
-
         ExtraModuleNames.AddRange( new string[] { "SuperMonkeyBowling" } );
 	}
 }
