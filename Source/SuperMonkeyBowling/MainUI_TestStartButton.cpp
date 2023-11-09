@@ -43,20 +43,20 @@ END_DEFINE_SPEC(testMainMenuStart)
 
 void testMainMenuStart::Define() {
 
+	BeforeEach([this]() {
+
+		if (IAutomationDriverModule::Get().IsEnabled())
+		{
+			IAutomationDriverModule::Get().Disable();
+		}
+
+		IAutomationDriverModule::Get().Enable();
+
+		Driver = IAutomationDriverModule::Get().CreateDriver();
+
+	});
+
 	Describe("describe", [this]() {
-
-		BeforeEach([this]() {
-
-			if (IAutomationDriverModule::Get().IsEnabled())
-			{
-				IAutomationDriverModule::Get().Disable();
-			}
-
-			IAutomationDriverModule::Get().Enable();
-
-			Driver = IAutomationDriverModule::Get().CreateDriver();
-
-		});
 
 		It("Load and Run Map. Find Element by id: BStart", [this]() {
 			// Providing the name of the Map.
@@ -73,12 +73,21 @@ void testMainMenuStart::Define() {
 			LevelEditorModule.StartPlayInEditorSession();
 			LevelEditorModule.FocusPIEViewport();
 
-			Driver->Wait(FTimespan::FromSeconds(2));
-			FDriverElementRef temp = Driver->FindElement(By::Id("BStart"));
+			//Driver->Wait(FTimespan::FromSeconds(2));
+			FDriverElementRef BStart = Driver->FindElement(By::Id("BStart"));
 
-			FString x = FString::Printf(TEXT("%s"), *temp.ToSharedPtr().Get()->GetText().ToString());
+			//FString x = FString::Printf(TEXT("%s"), *BStart.ToSharedPtr().Get()->GetText().ToString());
 
-			TEST_TRUE(temp->Exists());
+
+			FDriverSequenceRef Sequence = Driver->CreateSequence();
+			Sequence->Actions()
+				.MoveToElement(BStart)
+				.Click(BStart);
+			
+			// Doing Perform() will make Unreal Engine Freeze.I don't know why.
+			//Sequence->Perform();
+
+			TEST_TRUE(BStart->Exists());
 			
 			/*bool b = Driver->FindElement(By::Id(""))->Exists();*/
 
