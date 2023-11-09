@@ -10,6 +10,6 @@ public class SuperMonkeyBowlingEditorTarget : TargetRules
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V4;
 
-		ExtraModuleNames.AddRange( new string[] { "SuperMonkeyBowling" } );
+        ExtraModuleNames.AddRange( new string[] { "SuperMonkeyBowling" } );
 	}
 }
