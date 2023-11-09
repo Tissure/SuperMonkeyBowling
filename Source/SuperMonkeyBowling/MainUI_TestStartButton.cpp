@@ -20,6 +20,7 @@
 #include "IDriverSequence.h"
 
 #include "Misc/AutomationTest.h"
+#include <LevelEditor.h>
 
 #define TEST_TRUE(expression) \
 	EPIC_TEST_BOOLEAN_(TEXT(#expression), expression, true)
@@ -57,13 +58,24 @@ void testMainMenuStart::Define() {
 
 		});
 
-		It("it", [this]() {
+		It("Load and Run Map. Find Element by id: BStart", [this]() {
 			// Providing the name of the Map.
 			FString MapName = TEXT("/Game/Maps/MainMenuMap.MainMenuMap");
 
+			// Load Map
 			bool bLoadAsTemplate = false;
 			bool bShowProgress = false;
 			TEST_TRUE(FEditorFileUtils::LoadMap(MapName, bLoadAsTemplate, bShowProgress));
+
+			// Run Play In Editor Session
+			FLevelEditorModule& LevelEditorModule = FModuleManager::Get().GetModuleChecked<FLevelEditorModule>(TEXT("LevelEditor"));
+			LevelEditorModule.FocusPIEViewport();
+			LevelEditorModule.StartPlayInEditorSession();
+			LevelEditorModule.FocusPIEViewport();
+
+			FDriverElementRef temp = Driver->FindElement(By::Id("BStart"));
+
+			TEST_TRUE(temp->Exists());
 			
 			/*bool b = Driver->FindElement(By::Id(""))->Exists();*/
 
@@ -72,10 +84,6 @@ void testMainMenuStart::Define() {
 			//	.Click(By::Id("KeyG"))
 			//	.Click(By::Id("KeyF"))
 			//	.Click(By::Id("KeyE"));
-		});
-
-		It("it pt.2",[this]() {
-			TEST_TRUE(Driver->FindElement(By::Id("BStart"))->Exists());
 		});
 
 		AfterEach([this]() {
