@@ -8,7 +8,7 @@ public class SuperMonkeyBowling : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "UnrealEd", "Engine", "InputCore", "HeadMountedDisplay", "AutomationDriver" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "UnrealEd", "Engine", "InputCore", "HeadMountedDisplay", "AutomationDriver", "SlateCore", "UMG", "Slate" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

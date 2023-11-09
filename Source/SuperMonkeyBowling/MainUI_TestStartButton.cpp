@@ -73,7 +73,10 @@ void testMainMenuStart::Define() {
 			LevelEditorModule.StartPlayInEditorSession();
 			LevelEditorModule.FocusPIEViewport();
 
+			Driver->Wait(FTimespan::FromSeconds(2));
 			FDriverElementRef temp = Driver->FindElement(By::Id("BStart"));
+
+			FString x = FString::Printf(TEXT("%s"), *temp.ToSharedPtr().Get()->GetText().ToString());
 
 			TEST_TRUE(temp->Exists());
 			
