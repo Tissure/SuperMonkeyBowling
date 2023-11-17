@@ -7,17 +7,18 @@
 */
 
 #include "MainUI_TestStartButton.h"
-#include <Developer/AutomationDriver/Public/AutomationDriverTypeDefs.h>
-#include <Tests/AutomationEditorCommon.h>
+#include "DriverConfiguration.h"
+//#include <Developer/AutomationDriver/Public/AutomationDriverTypeDefs.h>
+//#include <Tests/AutomationEditorCommon.h>
 #include "Misc/AutomationTest.h"
 
-#include <Tests/AutomationEditorCommon.h>
+//#include <Tests/AutomationEditorCommon.h>
 #include <FileHelpers.h>
-#include "LocateBy.h"
 #include "IAutomationDriver.h"
 #include "IAutomationDriverModule.h"
 #include "IDriverElement.h"
 #include "IDriverSequence.h"
+#include "LocateBy.h"
 
 #include "Misc/AutomationTest.h"
 #include <LevelEditor.h>
@@ -58,7 +59,7 @@ void testMainMenuStart::Define() {
 
 	Describe("describe", [this]() {
 
-		It("Load and Run Map. Find Element by id: BStart", [this]() {
+		It("Load and Run Map. Find Element by id: BStart", EAsyncExecution::ThreadPool, [this]() {
 			// Providing the name of the Map.
 			FString MapName = TEXT("/Game/Maps/MainMenuMap.MainMenuMap");
 
@@ -87,8 +88,18 @@ void testMainMenuStart::Define() {
 			// Doing Perform() will make Unreal Engine Freeze.I don't know why.
 			//Sequence->Perform();
 
+			FString a = BStart->GetText().ToString();
+			UE_LOG(LogTemp, Warning, TEXT("%s"), *a);
+
+			// Test to see if Start Button Exists
 			TEST_TRUE(BStart->Exists());
-			
+
+			// Test to see if it is interactable (Should be True)
+			TEST_TRUE(BStart->IsInteractable());
+
+			// Test to see if the button is Visible (Should be True)
+			TEST_TRUE(BStart->IsVisible());
+
 			/*bool b = Driver->FindElement(By::Id(""))->Exists();*/
 
 			//FDriverSequenceRef Sequence = Driver->CreateSequence();
@@ -102,5 +113,67 @@ void testMainMenuStart::Define() {
 
 		});
 
-	});
+	});	
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(simpUITest, "SimpUITest", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+bool simpUITest::RunTest(const FString& Parameters) {
+
+	if (IAutomationDriverModule::Get().IsEnabled())
+	{
+		IAutomationDriverModule::Get().Disable();
+	}
+
+	IAutomationDriverModule::Get().Enable();
+
+	FAutomationDriverPtr Driver = IAutomationDriverModule::Get().CreateDriver();
+
+
+	// Providing the name of the Map.
+	FString MapName = TEXT("/Game/Maps/MainMenuMap.MainMenuMap");
+
+	// Load Map
+	bool bLoadAsTemplate = false;
+	bool bShowProgress = false;
+	TEST_TRUE(FEditorFileUtils::LoadMap(MapName, bLoadAsTemplate, bShowProgress));
+
+	// Run Play In Editor Session
+	FLevelEditorModule& LevelEditorModule = FModuleManager::Get().GetModuleChecked<FLevelEditorModule>(TEXT("LevelEditor"));
+	LevelEditorModule.FocusPIEViewport();
+	LevelEditorModule.StartPlayInEditorSession();
+	LevelEditorModule.FocusPIEViewport();
+
+	//Driver->Wait(FTimespan::FromSeconds(2));
+	FDriverElementRef BStart = Driver->FindElement(By::Id("BStart"));
+
+	//FString x = FString::Printf(TEXT("%s"), *BStart.ToSharedPtr().Get()->GetText().ToString());
+
+
+	FDriverSequenceRef Sequence = Driver->CreateSequence();
+	Sequence->Actions()
+		.MoveToElement(BStart)
+		.Click(BStart);
+
+	// Doing Perform() will make Unreal Engine Freeze.I don't know why.
+	//Sequence->Perform();
+
+	FString a = BStart->GetText().ToString();
+	UE_LOG(LogTemp, Warning, TEXT("%s"), *a);
+
+	// Test to see if Start Button Exists
+	return BStart->Exists() && (BStart->IsInteractable()) && (BStart->IsVisible());
+
+	// Test to see if it is interactable (Should be True)
+
+
+	// Test to see if the button is Visible (Should be True)
+
+	/*bool b = Driver->FindElement(By::Id(""))->Exists();*/
+
+	//FDriverSequenceRef Sequence = Driver->CreateSequence();
+	//Sequence->Actions()
+	//	.Click(By::Id("KeyG"))
+	//	.Click(By::Id("KeyF"))
+	//	.Click(By::Id("KeyE"));
+
 }
