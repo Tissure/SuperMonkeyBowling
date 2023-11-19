@@ -7,6 +7,8 @@
 void UMetaDataAdderHelper::AddMetaDataFunc(UPARAM(DisplayName = "UI Asset") UUserWidget* InAsset, UPARAM(DisplayName = "ID Value") FName InName)
 {
 	InAsset->TakeWidget()->AddMetadata(FDriverMetaData::Id(InName));
+	InAsset->SetIsEnabled(true);
+	InAsset->SetVisibility(ESlateVisibility::Visible);
 
 }
 
