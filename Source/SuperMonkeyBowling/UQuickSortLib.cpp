@@ -3,8 +3,19 @@
 
 #include "UQuickSortLib.h"
 
-void UQuickSortLib::QuickSort(UPARAM(DisplayName = "TimeScoreArray") TArray<FS_TimeScorePair> timeScorePairArray)
+void UQuickSortLib::QuickSort(UPARAM(DisplayName = "TimeScoreArray") TArray<FS_TimeScorePair> timeScorePairArray, bool ByScore)
 {
-	//Do something
-	timeScorePairArray.GetSlack();
+	if (ByScore) {
+		timeScorePairArray.Sort([](const FS_TimeScorePair& A, const FS_TimeScorePair& B) {
+			return A.Score > B.Score;
+			});
+	}
+	else {
+
+		timeScorePairArray.Sort([](const FS_TimeScorePair& A, const FS_TimeScorePair& B) {
+			return A.Time > B.Time;
+			});
+	}
 }
+
+

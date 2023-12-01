@@ -12,7 +12,7 @@ USTRUCT(BlueprintType)
 struct SUPERMONKEYBOWLING_API FS_TimeScorePair
 {
 
-	GENERATED_BODY()
+	GENERATED_USTRUCT_BODY()
 public:
 	/** Please add a variable description */
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (DisplayName = "Time", MakeStructureDefaultValue = "0.000000"))
