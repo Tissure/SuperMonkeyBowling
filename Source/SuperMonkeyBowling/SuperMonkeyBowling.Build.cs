@@ -8,8 +8,11 @@ public class SuperMonkeyBowling : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "UnrealEd", "Engine", "InputCore", "HeadMountedDisplay", "AutomationDriver", "SlateCore", "UMG", "Slate" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay", "SlateCore", "UMG", "Slate" });
 
+		#if WITH_EDITOR
+		PublicDependencyModuleNames.AddRange(new string[] {"UnrealEd", "AutomationDriver" });
+		#endif
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
 		// Uncomment if you are using Slate UI
