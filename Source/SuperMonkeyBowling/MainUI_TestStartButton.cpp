@@ -5,7 +5,7 @@
 * 1. Please take care to not have the same TestClass name as other Specs.
 * 2. Tentatively, whenever changes are made to Automation Tests, you must restart the Editor completely to see any changes in the Session Frontend
 */
-
+#if WITH_EDITOR
 #include "MainUI_TestStartButton.h"
 #include "DriverConfiguration.h"
 //#include <Developer/AutomationDriver/Public/AutomationDriverTypeDefs.h>
@@ -177,3 +177,4 @@ bool simpUITest::RunTest(const FString& Parameters) {
 	//	.Click(By::Id("KeyE"));
 
 }
+#endif
