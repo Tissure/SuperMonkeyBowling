@@ -25,6 +25,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spline");
 	UStaticMesh* Mesh;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Spline")
+	TArray<USplineMeshComponent*> MeshComponents;
+
 	// Safely Store Enums in type-safe way.
 	// User will set the forward axis In-Editor, which we will then use to set the given mesh's 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spline");
