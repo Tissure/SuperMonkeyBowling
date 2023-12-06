@@ -17,6 +17,7 @@ ASplineActor::ASplineActor()
 
 	// Initialize Spline Component and Set it as Root Component
 	SplineComponent = CreateDefaultSubobject<USplineComponent>(TEXT("Spline"));
+	SplineComponent->bDrawDebug = true;
 
 	// If valid DefaultSubobject, set as RootComponent.
 	// Note: Eliminates warnings in UE5 about missing RootComponent. Just good practice.
@@ -43,6 +44,7 @@ void ASplineActor::OnConstruction(const FTransform& Transform)
 		*/
 		USplineMeshComponent* SplineMeshComponent = NewObject<USplineMeshComponent>(this, USplineMeshComponent::StaticClass());
 
+		MeshComponents.Add(SplineMeshComponent);
 		// Set the Static Mesh.
 		SplineMeshComponent->SetStaticMesh(Mesh);
 

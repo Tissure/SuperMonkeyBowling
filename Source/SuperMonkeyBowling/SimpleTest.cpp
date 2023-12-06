@@ -4,9 +4,9 @@
 
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
-#include "CoreMinimal.h"
+#if WITH_EDITOR
 #include "SimpleTest.h"
+#include "CoreMinimal.h"
 #include "Misc/AutomationTest.h"
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(templateMathTest, "SimpleTest", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
@@ -24,3 +24,4 @@ SimpleTest::SimpleTest()
 SimpleTest::~SimpleTest()
 {
 }
+#endif
