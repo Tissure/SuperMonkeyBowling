@@ -15,5 +15,5 @@ class SUPERMONKEYBOWLING_API UQuickSortLib : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 	UFUNCTION(BlueprintCallable, Category = "QuickSort")
-	static void QuickSort(UPARAM(DisplayName = "TimeScoreArray") TArray<FS_TimeScorePair> timeScorePairArray, bool ByScore);
+	static void QuickSort(UPARAM(ref, DisplayName = "TimeScoreArray") TArray<FS_TimeScorePair>& timeScorePairArray, bool ByScore);
 };
