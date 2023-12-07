@@ -1,3 +1,8 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
+
+
 // Fill out your copyright notice in the Description page of Project Settings.
 
 /*
@@ -35,14 +40,14 @@
 #define EPIC_TEST_BOOLEAN_(text, expression, expected) \
 	TestEqual(text, expression, expected);
 
-BEGIN_DEFINE_SPEC(testMainMenuStart, "Tests.UserInterface.MainMenuStartz", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+BEGIN_DEFINE_SPEC(FTestMainMenuStart, "Tests.UserInterface.MainMenuStartz", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 
 // Define Spec here... Your related variables go here so we have a reference to them when testing.
 FAutomationDriverPtr Driver;
 
-END_DEFINE_SPEC(testMainMenuStart)
+END_DEFINE_SPEC(FTestMainMenuStart)
 
-void testMainMenuStart::Define() {
+void FTestMainMenuStart::Define() {
 
 	BeforeEach([this]() {
 
@@ -116,8 +121,8 @@ void testMainMenuStart::Define() {
 	});	
 }
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(simpUITest, "SimpUITest", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
-bool simpUITest::RunTest(const FString& Parameters) {
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FSimpUITest, "FSimpUITest", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+bool FSimpUITest::RunTest(const FString& Parameters) {
 
 	if (IAutomationDriverModule::Get().IsEnabled())
 	{
