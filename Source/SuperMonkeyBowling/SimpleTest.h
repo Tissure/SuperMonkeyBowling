@@ -7,7 +7,7 @@
 /**
  * 
  */
-class SUPERMONKEYBOWLING_API SimpleTest
+class SUPERMONKEYBOWLING_API FSimpleTest
 {
 public:
 	SimpleTest();

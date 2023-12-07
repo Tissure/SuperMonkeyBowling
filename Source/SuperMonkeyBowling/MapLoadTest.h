@@ -7,7 +7,7 @@
 /**
  * 
  */
-class SUPERMONKEYBOWLING_API MapLoadTest
+class SUPERMONKEYBOWLING_API FMapLoadTest
 {
 public:
 	MapLoadTest();

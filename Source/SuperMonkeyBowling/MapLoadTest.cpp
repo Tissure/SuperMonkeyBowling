@@ -11,8 +11,8 @@
 #include <Tests/AutomationEditorCommon.h>
 #include <FileHelpers.h>
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(mapLoadTest, "MapLoadTest", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
-bool mapLoadTest::RunTest(const FString& Parameters) {
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FMapLoadTest, "FMapLoadTest", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+bool FMapLoadTest::RunTest(const FString& Parameters) {
 
 	// Providing the name of the Map.
 	FString MapName = TEXT("/Game/Maps/KyleNWorkspace.KyleNWorkspace");
@@ -29,11 +29,11 @@ bool mapLoadTest::RunTest(const FString& Parameters) {
 	//return true;
 }
 
-MapLoadTest::MapLoadTest()
+FMapLoadTest::MapLoadTest()
 {
 }
 
-MapLoadTest::~MapLoadTest()
+FMapLoadTest::~MapLoadTest()
 {
 }
 #endif

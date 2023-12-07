@@ -9,8 +9,8 @@
 #include "CoreMinimal.h"
 #include "Misc/AutomationTest.h"
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(templateMathTest, "SimpleTest", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
-bool templateMathTest::RunTest(const FString& Parameters) {
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FTemplateMathTest, "FSimpleTest", EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+bool FTemplateMathTest::RunTest(const FString& Parameters) {
 	
 	return TestTrue("Testing Math.", 1<0);
 	

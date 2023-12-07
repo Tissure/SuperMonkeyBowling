@@ -7,7 +7,7 @@
 /**
  * 
  */
-class SUPERMONKEYBOWLING_API MainUI_TestStartButton
+class SUPERMONKEYBOWLING_API FMainUI_TestStartButton
 {
 public:
 	//MainUI_TestStartButton();
